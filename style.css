@@ -1,0 +1,78 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: grey;
+}
+
+h1{
+    text-align: center;
+    font-size: 3rem;
+    color: black;
+    font-family: Tahoma;
+    font-style: italic;
+}
+
+.CalculatorContainer{
+    background-color: rgba(0, 0, 0, 0.808);
+    width: 22%;
+    margin: 0 auto;
+    margin-top: 70px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px
+    
+}
+
+.InputScreen{
+    background-color: rgba(128, 128, 128, 0.432);
+    outline: none;
+    border: none;
+    padding: 40px;
+    margin-bottom: 20px;
+    font-size: 4rem;
+    user-select: none;
+    cursor: default;
+    color: white;
+
+}
+
+.buttonsContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.firstRow,.secondRow,.thirdRow,.fourthRow{
+  display: flex;
+  gap: 10px;
+}
+
+
+button{
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    border: none;
+    font-size: 50px;
+    background-color: rgba(128, 128, 128, 0.76);
+}
+
+button:hover{
+    cursor: pointer;
+    background-color: rgba(128, 128, 128, 0.548);
+}
+
+.Operator{
+    margin-left: 20px;
+    background-color: rgb(255, 153, 0);
+}
+
+.Operator:hover{
+    background-color: rgba(255, 153, 0, 0.589);
+}
