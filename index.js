@@ -8,9 +8,26 @@ const buttons=document.querySelectorAll("button")
 
 
 buttons.forEach(BTN =>{
+
+   
     let operand;
     BTN.addEventListener("click",(event)=>{
         if(BTN.value==="="){
+
+            if(InputScreen.value.startsWith("+")){
+                console.log("Im in")
+              InputScreen.value=InputScreen.value.replace(InputScreen.value.charAt(0),"")
+
+            }
+
+            if(InputScreen.value.startsWith("*") || InputScreen.value.startsWith("/")){
+                console.log("Do you go in?")
+                InputScreen.value="ERROR"
+            }
+
+
+
+            else{
             for(let i=0;i<InputScreen.value.length;i++){
                 if(InputScreen.value.indexOf("+")!==-1){
                     operand=InputScreen.value.indexOf("+")
@@ -40,8 +57,11 @@ buttons.forEach(BTN =>{
             console.log(firstNumber)
             console.log(secondNumber)
             console.log(operand)
+        
             
+        
             InputScreen.value=operate(operand,firstNumber,secondNumber)
+        }
 
 
         }
