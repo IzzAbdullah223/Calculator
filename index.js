@@ -108,8 +108,8 @@ buttons.forEach(button=>{
 
         else{
             input.value+=button.value
-                if(operands.length>1){
-                    console.log("ya go in?")
+         
+               if(operands.length>1){
                     let LastOperand=operands[operands.length-1]
                     let operand=operands[0]
                     let firstNumber= Number(input.value.slice(0,input.value.indexOf(operand)))
