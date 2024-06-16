@@ -1,6 +1,6 @@
 *{
-    padding: 0;
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
@@ -10,69 +10,66 @@ body{
 
 h1{
     text-align: center;
-    font-size: 3rem;
-    color: black;
-    font-family: Tahoma;
     font-style: italic;
+    font-size: 3rem;
+    margin-bottom: 30px;
+    color: white;
+    font-weight: bold;
+
 }
 
 .CalculatorContainer{
-    background-color: rgba(0, 0, 0, 0.808);
-    width: 22%;
-    margin: 0 auto;
-    margin-top: 70px;
-    padding-bottom: 10px;
+    background-color: hsl(0,0%,15%);
+    width: min-content;
     display: flex;
     flex-direction: column;
-    border-radius: 5px
+    margin: 0 auto;
+    border-radius: 10px;    
+}
+
+ 
+
+input{
+    width: 100%;
+    padding: 40px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: hsl(0,0%,20%);
+    outline: none;
+    font-size: 3rem;
+    color: white;
     
 }
 
-.InputScreen{
-    background-color: rgba(128, 128, 128, 0.432);
-    outline: none;
-    border: none;
-    padding: 40px;
-    margin-bottom: 20px;
-    font-size: 4rem;
-    user-select: none;
-    cursor: default;
-    color: white;
-
-}
-
 .buttonsContainer{
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(4,auto);
     gap: 10px;
+    padding: 20px;
 }
-
-
-.firstRow,.secondRow,.thirdRow,.fourthRow{
-  display: flex;
-  gap: 10px;
-}
-
 
 button{
     width: 100px;
     height: 100px;
+    font-size: 2.5rem;
     border-radius: 50px;
+    outline: none;
     border: none;
-    font-size: 50px;
-    background-color: rgba(128, 128, 128, 0.76);
+    background-color: hsl(0,0%,30%);
+    color: white;
+    cursor: pointer;
 }
 
 button:hover{
-    cursor: pointer;
-    background-color: rgba(128, 128, 128, 0.548);
+    background-color: hsla(0, 0%, 50%, 0.205);
 }
 
-.Operator{
-    margin-left: 20px;
-    background-color: rgb(255, 153, 0);
+.operator{
+    background-color: hsl(35,100%,55%);
+    
 }
 
-.Operator:hover{
-    background-color: rgba(255, 153, 0, 0.589);
+.operator:hover{
+    background-color: hsl(35,100%,45%);
 }

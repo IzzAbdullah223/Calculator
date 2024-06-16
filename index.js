@@ -1,157 +1,140 @@
-const InputScreen=document.querySelector(".InputScreen")
+const input = document.querySelector(".input")
 
-const buttons=document.querySelectorAll("button")
+const buttons = document.querySelectorAll("button")
 
+const clearButton = document.querySelector(".clear")
 
+const operands=[]
 
+const negativeOperands=[]
 
-
-
-buttons.forEach(BTN =>{
-
-   
-    let operand;
-    BTN.addEventListener("click",(event)=>{
-        if(BTN.value==="="){
-
-            if(InputScreen.value.startsWith("+")){
-                console.log("Im in")
-              InputScreen.value=InputScreen.value.replace(InputScreen.value.charAt(0),"")
-
-            }
-
-            if(InputScreen.value.startsWith("*") || InputScreen.value.startsWith("/")){
-                console.log("Do you go in?")
-                InputScreen.value="ERROR"
-            }
-
-
-
-            else{
-            for(let i=0;i<InputScreen.value.length;i++){
-                if(InputScreen.value.indexOf("+")!==-1){
-                    operand=InputScreen.value.indexOf("+")
-                    break;
-                }
-                if(InputScreen.value.indexOf("*")!==-1){
-                    operand=InputScreen.value.indexOf("*")
-                    break;
-                }
-
-                if(InputScreen.value.indexOf("-")!==-1){
-                    operand=InputScreen.value.indexOf("-")
-                    break;
-                }
-                if(InputScreen.value.indexOf("/")!==-1){
-                    operand=InputScreen.value.indexOf("/")
-                    break;
-                }
-
-                
-            }
-           
-             
-            let firstNumber=Number(InputScreen.value.slice(0,operand))
-            let secondNumber=Number(InputScreen.value.slice(operand+1))  
-            operand=(InputScreen.value.charAt(operand))
-            console.log(firstNumber)
-            console.log(secondNumber)
-            console.log(operand)
-        
-            
-        
-            InputScreen.value=operate(operand,firstNumber,secondNumber)
-        }
-
-
-        }
-        else{
-
-       InputScreen.value+=BTN.value
-        }
-
-
-        if(BTN.value=="C"){
-            InputScreen.value=""
-        }
-    })
- 
-})
-
-
-// if the user inputs the operand more than two times result in error 
-buttons.forEach(BTN=>{
-    
-
-       
-    if(BTN.value==="*" || BTN.value==="/" || BTN.value=="-" || BTN.value=="+"){
-
-
-        BTN.addEventListener("dblclick",(event)=>{
-            InputScreen.value="ERROR"
-            
-            buttons.forEach(BTN=>{
-                
-            })
-        
-        })
-        
-         }
-})
-
- 
 
 
  
-
-
-
-function add(firstNumber,secondNumber){
-    InputScreen.value=""
-    return firstNumber+secondNumber;
-
-}
-
-function substract(firstNumber,secondNumber){
-    InputScreen.value=""
-    return firstNumber-secondNumber;
-
-}
-
-function multiply(firstNumber,secondNumber){
-    InputScreen.value=""
-    return firstNumber*secondNumber;
-
-}
-
-function divide(firstNumber,secondNumber){
-    InputScreen.value=""
-    return firstNumber/secondNumber;
-
-}
-
-
-function operate(Operator,firstNumber,secondNumber){
+function Operate(firstNumber,Operator,secondNumber){
+    operands.length=0
+    console.log(operands)
+    input.value=""
     switch(true){
         case Operator==="+":
-             return InputScreen.value=add(firstNumber,secondNumber)
+            input.value=firstNumber+secondNumber
+            console.log(input.value.length)
             break;
 
         case Operator==="-":
-            InputScreen.value=""
-             return InputScreen.value=substract(firstNumber,secondNumber)
+            input.value=firstNumber-secondNumber
             break;
 
-        case Operator=="/":
-            InputScreen.value=""
-             return InputScreen.value=divide(firstNumber,secondNumber)
+        case Operator==="*":
+            input.value=firstNumber*secondNumber
             break;
+        
+        case Operator==="/":
+            if(secondNumber==0){
+                input.value="What are u doing"
+            }
+            else{
+            input.value=firstNumber/secondNumber;
+            }
+            break;
+        }
+    
+ 
 
-        case Operator=="*":
-            InputScreen.value=""
-           return  InputScreen.value=multiply(firstNumber,secondNumber)
-            break;
-    }
+
 }
+ 
 
+
+buttons.forEach(button=>{
+    button.addEventListener("click",()=>{
+        
+        if(input.value.startsWith("+")){
+            operands.pop()
+          input.value=input.value.replace(input.value.charAt(0),"")
+        }
+        if(input.value.startsWith("/")){
+            operands.pop()
+          input.value=input.value.replace(input.value.charAt(0),"")
+        }
+        if(input.value.startsWith("*")){
+            operands.pop()
+          input.value=input.value.replace(input.value.charAt(0),"")
+        }
+
+      
+
+       
+
+       
+        
+        if(button.value==="+" || button.value==="-" ||  button.value==="*" || button.value==="/"){
+            operands.push(button.value)
+        }
+    
+     
+  
+        if(button.value==="="){
+            let operand;
+            for(let i=0;i<input.value.length;i++){
+                if(input.value.indexOf("+")!==-1){
+                    operand=input.value.indexOf("+")
+                    break;
+                }
+                if(input.value.indexOf("*")!==-1){
+                    operand=input.value.indexOf("*")
+                    break;
+                }
+
+                if(input.value.indexOf("-")!==-1){
+                    operand=input.value.indexOf("-")
+                    break;
+                }
+                if(input.value.indexOf("/")!==-1){
+                    operand=input.value.indexOf("/")
+                    break;
+                }    
+            }
+            let firstNumber=Number(input.value.slice(0,operand))
+            let secondNumber=Number(input.value.slice(operand+1))  
+            operand=(input.value.charAt(operand))
+
+            Operate(firstNumber,operand,secondNumber)
+
+ 
+           
+        }
+ 
+
+        else{
+            input.value+=button.value
+                if(operands.length>1){
+                    console.log("ya go in?")
+                    let LastOperand=operands[operands.length-1]
+                    let operand=operands[0]
+                    let firstNumber= Number(input.value.slice(0,input.value.indexOf(operand)))
+                    let secondNumber=Number(input.value.slice(input.value.indexOf(operand)+1,input.value.lastIndexOf(LastOperand)))
+                    console.log(operands)
+                    Operate(firstNumber,operand,secondNumber)
+                     
+     
+            
+                }
+                
+            }
+        }
+
+       
+    )})
+
+
+
+
+
+
+
+
+clearButton.addEventListener("click",()=>{
+    input.value=""
+})
 
