@@ -13,12 +13,10 @@ const negativeOperands=[]
  
 function Operate(firstNumber,Operator,secondNumber){
     operands.length=0
-    console.log(operands)
     input.value=""
     switch(true){
         case Operator==="+":
             input.value=firstNumber+secondNumber
-            console.log(input.value.length)
             break;
 
         case Operator==="-":
